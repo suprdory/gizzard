@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Words of the Day Section -->
+        <section id="words-of-the-day">
+            <h4>Words of the Day</h4>
+            <h2 id="daily-words"></h2>
+        </section>
+        <br>
+
+        <!-- Random Phrase Generator Section -->
+        <section id="phrase-generator">
+            <h4>Selected Wisdom</h4>
+            <p id="random-phrase"></p>
+            <button class="dark-button" onclick="generatePhrase()">Seek new wisdom</button>
+        </section>
+        <br><br><br>
+        <!-- Full Text Section -->
+        <button class="dark-button" id="reveal-button" onclick="revealText()">View the source</button>
+        <section id="full-text" style="display: none;">
+            <!-- <h2>Full Text</h2> -->
+            <pre id="text-content"></pre>
+        </section>
+    
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
