@@ -15,6 +15,7 @@ h1,h2,h3,h4, p{
 
 h4 {
     color:darkgoldenrod;
+    font-size: x-large;
 }
 p{
     font-size: large;
@@ -27,8 +28,8 @@ pre {
 
 .dark-button {
     display: block;    /* Make the button a block element */
-    margin: 0 auto;    /* Center it horizontally */
-    margin-bottom: 15px; /* Add space below each button */
+    margin: 10px auto;   /* Center it horizontally */
+    /* margin-bottom: 15px; Add space below each button */
     background-color: #333;    /* Dark background */
     color: #fff;               /* Light text color */
     border: none;              /* Remove border */
@@ -36,7 +37,15 @@ pre {
     font-size: 16px;           /* Font size */
     border-radius: 5px;        /* Rounded corners */
     cursor: pointer;          /* Pointer on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    transition: background-color 0.3s ease, transform 0.2s ease; /*Smooth transitions */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
+}
+
+  .small-button{
+    font-size: smaller;
+    padding: 5px 10px;        /* Padding around text */
+
   }
 
   .dark-button:hover {
