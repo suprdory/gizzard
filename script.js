@@ -24,18 +24,23 @@ function seededRandom(seed) {
 function capitalizeFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 }
+
 // Function to get three unique "Words of the Day" based on the current date
 function getWordsOfTheDay(words) {
     const dateSeed = new Date().toISOString().split("T")[0]; // Get the current date (YYYY-MM-DD)
     const seed = dateSeed.split("-").join(""); // Combine the date digits into a seed
     const uniqueWords = new Set();
 
-    while (uniqueWords.size < 3 && words.length > uniqueWords.size) {
-        const randomIndex = Math.floor(seededRandom(parseInt(seed) + uniqueWords.size) * words.length);
+
+    let n = 0;
+    while (uniqueWords.size < 3) {
+        const randomIndex = Math.floor(seededRandom(parseInt(seed) + n) * words.length);
         uniqueWords.add(capitalizeFirstLetter(words[randomIndex]));
+        n = n + 1;
     }
     document.title = [...uniqueWords][0]
     return Array.from(uniqueWords).join(", ");
+
 }
 
 // Function to generate a random phrase with punctuation and capitalization
@@ -62,11 +67,11 @@ function generateRandomPhraseWithFormatting(originalText) {
 function revealText() {
     if (document.getElementById("full-text").style.display == "block") {
         document.getElementById("full-text").style.display = "none";
-        document.getElementById("reveal-button").innerText="View the source"
+        document.getElementById("reveal-button").innerText = "View the source"
     }
     else {
         document.getElementById("full-text").style.display = "block";
-        document.getElementById("reveal-button").innerText="Hide the source"
+        document.getElementById("reveal-button").innerText = "Hide the source"
     }
     // document.getElementById("full-text").style.display = "block";
     // document.getElementById("reveal-button").style.display = "none";
@@ -81,7 +86,7 @@ function generatePhrase() {
 let cleanedWords = []; // Store cleaned words globally
 let originalText = ""; // Store the original text globally
 
-// Load the contents of text.txt
+// // Load the contents of text.txt
 fetch("text.txt")
     .then(response => {
         if (!response.ok) {
@@ -93,13 +98,17 @@ fetch("text.txt")
         originalText = data; // Store original text for phrase generation
         cleanedWords = cleanText(data);
 
-        // Words of the Day
-        document.getElementById("daily-words").textContent = getWordsOfTheDay(cleanedWords);
-
         // Full Text
         document.getElementById("text-content").textContent = data;
-        generatePhrase()
+        generatePhrase();
+
+        //         // Words of the Day
+        document.getElementById("daily-words").textContent = getWordsOfTheDay(cleanedWords);
+        //     })
+
     })
+
+
     .catch(error => {
         console.error("There was a problem with the fetch operation:", error);
     });
