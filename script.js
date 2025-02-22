@@ -31,10 +31,9 @@ function getWordsOfTheDay(words) {
     const seed = dateSeed.split("-").join(""); // Combine the date digits into a seed
     const uniqueWords = new Set();
 
-
     let n = 0;
     while (uniqueWords.size < 3) {
-        const randomIndex = Math.floor(seededRandom(parseInt(seed) + n) * words.length);
+        const randomIndex = Math.floor(seededRandom(parseInt(seed) + n*111111) * words.length);
         uniqueWords.add(capitalizeFirstLetter(words[randomIndex]));
         n = n + 1;
     }
